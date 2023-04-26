@@ -2,9 +2,11 @@
 This is my final API Project for Zoo Animals, created in C#
 
 Dependencies and packages:
+
 ![image](https://github.com/johntse1/ZooAPI/blob/main/dependencies.PNG)
 
 Ensure that the connection string is set to your database.
+
 ![image](https://github.com/johntse1/ZooAPI/blob/main/connectionstring.PNG)
 
 ##Routes
