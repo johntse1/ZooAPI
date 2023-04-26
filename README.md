@@ -74,3 +74,97 @@ Returns all animals available in the database. If an ID is provided, it will lin
     "subSpecies": "Lion"
 }
 ```
+### Post Requests
+POST ```/api/Zoos```
+
+Designed to put Zoo names and locations into the database
+
+Example:
+```
+{
+    "zooName": "Queens Zoo",
+    "location": "Queens"
+}
+```
+
+Which gives the result:
+```
+    "statusCode": 201,
+    "statusDescription": "Success: Zoo was created",
+    "result": {
+        "zooID": 3,
+        "zooName": "Queens Zoo",
+        "location": "Queens"
+    }
+```
+
+POST ```/api/Animals```
+
+Designed to put Animal and locations into the database
+
+Example:
+```
+{
+   "animalName": "Willy Nilly Badger",
+   "subSpecies": "Badger"
+}
+```
+
+Which gives the result
+```
+{
+    "statusCode": 201,
+    "statusDescription": "Success: Animal added",
+    "result": {
+        "urlHelper": null,
+        "actionName": "GetAnimals",
+        "controllerName": null,
+        "routeValues": {
+            "id": 7
+        },
+        "value": {
+            "animalID": 7,
+            "animalName": "Willy Nilly Badger",
+            "subSpecies": "Badger"
+        },
+        "formatters": [],
+        "contentTypes": [],
+        "declaredType": null,
+        "statusCode": 201
+    }
+}
+```
+**NOTE: There is an optional ZooID input** 
+Example:
+```
+{
+   "animalName": "Brown Bear",
+   "subSpecies": "Bear",
+   "zooID":1
+}
+```
+Result:
+```
+{
+    "statusCode": 201,
+    "statusDescription": "Success: Animal added",
+    "result": {
+        "urlHelper": null,
+        "actionName": "GetAnimals",
+        "controllerName": null,
+        "routeValues": {
+            "id": 8
+        },
+        "value": {
+            "animalID": 8,
+            "animalName": "Brown Bear",
+            "subSpecies": "Bear"
+        },
+        "formatters": [],
+        "contentTypes": [],
+        "declaredType": null,
+        "statusCode": 201
+    }
+}
+```
+
