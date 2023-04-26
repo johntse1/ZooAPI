@@ -26,9 +26,9 @@ namespace ZooAPI.Controllers
         {
           if (_context.Animal == null)
           {
-              return NotFound();
+                return NotFound(new Response(404, "Error Not Found: Animal list does not exist", null));
           }
-            return await _context.Animal.ToListAsync();
+            return Ok(new Response(200, "Successful call", await _context.Animal.ToListAsync()));
         }
 
         // GET: api/Animals/5
@@ -37,16 +37,16 @@ namespace ZooAPI.Controllers
         {
           if (_context.Animal == null)
           {
-              return NotFound();
-          }
+                return NotFound(new Response(404, "Error Not Found: Animal does not exist", null));
+            }
             var animal = await _context.Animal.FindAsync(id);
 
             if (animal == null)
             {
-                return NotFound();
+                return NotFound(new Response(404, "Error Not Found: Animal does not exist", null));
             }
 
-            return animal;
+            return Ok(new Response(200, "Successful call",animal));
         }
 
         // PUT: api/Animals/5
@@ -56,7 +56,7 @@ namespace ZooAPI.Controllers
         {
             if (id != animal.AnimalID)
             {
-                return BadRequest();
+                return BadRequest(new Response(400,"Error: Invalid Request",null));
             }
 
             _context.Entry(animal).State = EntityState.Modified;
@@ -69,7 +69,7 @@ namespace ZooAPI.Controllers
             {
                 if (!AnimalExists(id))
                 {
-                    return NotFound();
+                    return NotFound(new Response(404,"Error Not Found: Animal does not exist",null));
                 }
                 else
                 {
@@ -77,7 +77,7 @@ namespace ZooAPI.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(new Response(200, "Success: Change was posted.", CreatedAtAction("GetLinks",new {id = animal.AnimalID}, animal).Value));
         }
 
         // POST: api/Animals
@@ -87,12 +87,12 @@ namespace ZooAPI.Controllers
         {
           if (_context.Animal == null)
           {
-              return Problem("Entity set 'ZooAPIContext.Animal'  is null.");
+              return NotFound(new Response(404, "Error Not Found: Animal does not exist.",null));
           }
             _context.Animal.Add(animal);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAnimal", new { id = animal.AnimalID }, animal);
+            return StatusCode(201, new Response(201, "Success: Animal added", CreatedAtAction("GetAnimals", new {id = animal.AnimalID},animal)));
         }
 
         // DELETE: api/Animals/5
@@ -101,18 +101,18 @@ namespace ZooAPI.Controllers
         {
             if (_context.Animal == null)
             {
-                return NotFound();
+                return NotFound(new Response(404, "Error Not Found: Animal does not exist", null));
             }
             var animal = await _context.Animal.FindAsync(id);
             if (animal == null)
             {
-                return NotFound();
+                return NotFound(new Response(404, "Error Not Found: Animal does not exist",null));
             }
 
             _context.Animal.Remove(animal);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(new Response(200, "Success, Animal deleted :(",""));
         }
 
         private bool AnimalExists(int id)
