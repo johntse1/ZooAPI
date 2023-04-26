@@ -66,8 +66,7 @@ Returns all animals available in the database. If an ID is provided, it will lin
     }
 ]
 ```
-
-###Example calling GET /api/Animals/1
+### Example calling GET /api/Animals/1
 
 ```
 {
@@ -169,4 +168,45 @@ Result:
     }
 }
 ```
+### Delete Requests
+DELETE ```/api/Animals/{id}```
+DELETE ```/api/Zoos/{id}```
 
+You are able to delete specific entries within the database by id.
+## Animal
+Status Codes:
+
+Successful:
+```
+{
+    "statusCode": 200,
+    "statusDescription": "Success, Animal deleted :(",
+    "result": ""
+}
+```
+Unsuccessful:
+```
+{
+    "statusCode": 404,
+    "statusDescription": "Error Not Found: Animal does not exist",
+    "result": null
+}
+```
+
+## Zoo
+Successful:
+```
+{
+    "statusCode": 200,
+    "statusDescription": "Success: Zoo was deleted",
+    "result": ""
+}
+```
+Unsuccessful:
+```
+{
+    "statusCode": 404,
+    "statusDescription": "Error: Not Found: Zoo does not exist",
+    "result": null
+}
+```
