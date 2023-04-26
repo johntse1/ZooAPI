@@ -41,7 +41,7 @@ Returns all Zoos recorded in the database. If an ID is provided, it will link to
 ### GET [/api/Animals/{Optional ID}]
 Returns all animals available in the database. If an ID is provided, it will link to the animal with the specific id.
 
-###Example calling GET /api/Animals
+### Example calling GET /api/Animals
 ```
 [
     {
