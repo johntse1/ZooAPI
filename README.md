@@ -1,5 +1,5 @@
 # ZooAPI
-This is my final API Project for Zoo Animals, created in C#
+This is my API Project for Zoo Animals, created in C#
 
 Dependencies and packages:
 
